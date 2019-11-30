@@ -1,0 +1,73 @@
+# Based on the file created for Arch Linux by:
+# Maintainer : Thomas Baechler <thomas@archlinux.org>
+
+# Maintainer: David Spink <yorper_protonmail.com>
+
+_linuxprefix=linux54
+_extramodules=extramodules-5.4-CLEANJARO
+pkgname=$_linuxprefix-nvidia-340xx
+_pkgname=nvidia
+pkgver=340.107
+_pkg=NVIDIA-Linux-x86_64-${pkgver}-no-compat32
+pkgrel=1
+provides=("$_pkgname=$pkgver")
+groups=("$_linuxprefix-extramodules")
+pkgdesc="NVIDIA drivers for linux (Legacy)."
+arch=('x86_64')
+url="http://www.nvidia.com/"
+depends=("$_linuxprefix" "nvidia-340xx-utils=${pkgver}")
+makedepends=("$_linuxprefix-headers")
+conflicts=('nvidia-390xx' 'nvidia-418xx' 'nvidia-430xx' 'nvidia-435xx' 'nvidia-440xx')
+license=('custom')
+install=nvidia.install
+options=(!strip !ccache)
+source=('kernel-4.11.patch' 'kernel-5.0.patch' 'kernel-5.2.patch' 'kernel-5.3.patch' 'kernel-5.4.patch' 
+        "https://us.download.nvidia.com/XFree86/Linux-x86_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
+sha256sums=('2709136852e4926fee5e0100f0b8be668bf6563159ba2ffc9d9dcea3ea08193e'
+            'b1e539b507dfbffda831de2c7145b62f9fc28e9df2c39cb7c22754e74057886e'
+            'bb9891894f4109a3c79b167c666c0de12bf7a38cebb562d1527bd0cf82fe3798'
+            '30af1c1fffec3becd831b974a96782cf9392f4d6816da208a6e967c6b1184414'
+            '0a300ea4b78249807c6d3eb20cc85330339a4deb2f337045dfe35895497e9383'
+            '6dc6f183c69c414670d8adef0286a2362eedd6e16ec6dfae811e48ea4a4505dc')
+
+[[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
+
+prepare() {
+    sh "${_pkg}.run" --extract-only
+    cd "${_pkg}"
+    # patches here
+
+    # Fix compile problem with 4.11
+    (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-4.11.patch)
+
+    # Fix compile problem with 5.0
+    (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.0.patch)
+
+    (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.2.patch)
+
+    (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.3.patch)
+
+    (cd kernel; patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.4.patch)
+
+    export DISTCC_DISABLE=1
+    export CCACHE_DISABLE=1
+}
+
+build() {
+    _kernver="$(cat /usr/lib/modules/${_extramodules}/version)"
+
+    cd "${_pkg}"/kernel
+    make SYSSRC=/usr/lib/modules/"${_kernver}/build" module
+
+    cd uvm
+    make SYSSRC=/usr/lib/modules/"${_kernver}/build" module
+}
+
+package() {
+    install -D -m644 "${srcdir}/${_pkg}/kernel/nvidia.ko" \
+        "${pkgdir}/usr/lib/modules/${_extramodules}/nvidia.ko"
+    install -D -m644 "${srcdir}/${_pkg}/kernel/uvm/nvidia-uvm.ko" \
+        "${pkgdir}/usr/lib/modules/${_extramodules}/nvidia-uvm.ko"
+    gzip "${pkgdir}/usr/lib/modules/${_extramodules}/"*.ko
+    sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" "${startdir}/nvidia.install"
+}
