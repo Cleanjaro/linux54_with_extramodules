@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=3
+_sub=5
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -26,6 +26,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         0002-drm-amd-display-Re-enable-wait-in-pipelock-but-add-timeout.patch
         0003-nvme-Add-hardware-monitoring-support.patch
         0004-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch
+        0005-ALSA-hda-Modify-stream-stripe-mask-only-when-needed.patch
         # AMD navi 10 reset quirk
         0001-nonupstream-navi10-vfio-reset.patch
         )
@@ -36,13 +37,14 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            'ca4f197c25fc29e0dc14b1f56bacae8aa5b568775f57ef1cc1f465379bc3cceb'
+            '7ac5c8967fb99aa379148c1edd7bc98689972fecf916e77954cd36328f85b260'
             'cab2cc66e215fc6c2bbef974f533a3aed79006a089ed75f7edacb9fdc2bccd90'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '6f3e8a7b5bc40e9a64c0dfe8c36a3d00fe8d70a160b2a57d9e0ba9b6a6716ef3'
-            '4550f9de108d0e4377a6bb6943fdedf599695d12e6d26dc4a72f124320760379'
+            '4696f89573fb4473234b6526322bd67252ec6f18f3e320408a1dbdae0f476420'
             '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
+            '5e32f88c88afec0d45bf719899abe7aec97417ee3b1b7687c285b45ad3fcdadb'
             '7a2758f86dd1339f0f1801de2dbea059b55bf3648e240878b11e6d6890d3089c')
 prepare() {
   cd "${srcdir}/linux-${_basekernel}"
@@ -59,6 +61,7 @@ prepare() {
   patch -Np1 -i ../0002-drm-amd-display-Re-enable-wait-in-pipelock-but-add-timeout.patch
   patch -Np1 -i ../0003-nvme-Add-hardware-monitoring-support.patch
   patch -Np1 -i ../0004-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch
+  patch -Np1 -i ../0005-ALSA-hda-Modify-stream-stripe-mask-only-when-needed.patch
 
   # TODO: remove when AMD properly fixes it!
   # INFO: this is a hack and won't be upstreamed
