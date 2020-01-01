@@ -10,7 +10,7 @@ _kernelname=-CLEANJARO
 _basekernel=5.4
 _sub=7
 pkgver=${_basekernel}.${_sub}
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -20,13 +20,25 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         "http://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config.x86_64'
         # ARCH Patches
-        0001-ZEN-Add-CONFIG-for-unprivileged_userns_clone.patch
+        '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
+        '0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
+        '0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
+        '0004-PCI-pciehp-dont-disable-interrupt-twice-on-suspend.patch'
+        '0005-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
+        '0006-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
+        '0007-iwfwifi-revert-968dcfb.patch'
+        '0008-x86-intel-Disable-HPET-on-Intel-Ice-Lake-platforms.patch'
+        '0009-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+        '0010-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+        '0011-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+        '0012-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+        '0013-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
         # Cleanjaro Patches
-        0001-futex-wait-multiple-5.3.patch
-        0002-nvme-Add-hardware-monitoring-support.patch
-        0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch
+        '0001-futex-wait-multiple-5.3.patch'
+        '0002-nvme-Add-hardware-monitoring-support.patch'
+        '0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
         # AMD navi 10 reset quirk
-        0001-nonupstream-navi10-vfio-reset.patch
+        '0001-nonupstream-navi10-vfio-reset.patch'
         )
 validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
@@ -38,6 +50,18 @@ sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             '7d99e8136518db0601abb7b59388c07838125901f540084d4575e87602544fd1'
             'cab2cc66e215fc6c2bbef974f533a3aed79006a089ed75f7edacb9fdc2bccd90'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
+            '7baea65989ef0d29ab4eb8296759193b8f93c31248d08e944e1bdf0059ccdfdd'
+            'abcf6043c594d5514118124a8f2cf8787557a95338fa0ff7f28a142567bafed0'
+            '3e8ed640a8853a038e89b4cd9b17e6a9c3f8bfb19c5efa3ca65224c6aabb8e83'
+            '2431629465ca508a203df31ee14f614c061f6efc128ec858cecb4a3a2ee5f1d0'
+            '25d72c2c88088d78afa1658fc16c8d4ad98f4140ec69fa0ade49abfe27e8f722'
+            'f28154d389c715b4ce72d67836df6edc878b327ec6ca8dc42dfd2298f9f7509f'
+            '1bcec07561c785e22ca43a140b07b586bc7717ea3c08e7549ec7a3bdfa39b7e2'
+            'e2084feabc3abeed37579ff515c367014356a652b85794b1612fea4daabe85d3'
+            '988ffbb96d85564a9d96145e5973339a8f78ae95d919efb2ee7bb50f7a8e8fc9'
+            '5257159e20a5fcb102a3b3ee6de33882a9e132e7f1d4345b8730effdd0240bb6'
+            '2516be40fe063f7a448c69f170d628dbf549c3e084c2c7eb6910fd4782a6e73f'
+            '57c7eb7849f99f2067587b5826b6d6abfb1675238d104b2378f4db59639a9cf4'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '597fae308df67ddf5a57d630f1950c6634a46d0506f5e9cd5d203ed9cce71184'
             '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
@@ -50,12 +74,25 @@ prepare() {
 
   # Arch Patches
   # disable USER_NS for non-root users by default
-  patch -Np1 -i ../0001-ZEN-Add-CONFIG-for-unprivileged_userns_clone.patch
+  patch -Np1 -i '../0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
+  # More Arch Patches
+  patch -Np1 -i '../0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
+  patch -Np1 -i '../0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
+  patch -Np1 -i '../0004-PCI-pciehp-dont-disable-interrupt-twice-on-suspend.patch'
+  patch -Np1 -i '../0005-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
+  patch -Np1 -i '../0006-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
+  patch -Np1 -i '../0007-iwfwifi-revert-968dcfb.patch'
+  patch -Np1 -i '../0008-x86-intel-Disable-HPET-on-Intel-Ice-Lake-platforms.patch'
+  patch -Np1 -i '../0009-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+  patch -Np1 -i '../0010-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+  patch -Np1 -i '../0011-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+  patch -Np1 -i '../0012-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+  patch -Np1 -i '../0013-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
 
-  # add Cleanjaro Patches
-  patch -Np1 -i ../0001-futex-wait-multiple-5.3.patch
-  patch -Np1 -i ../0002-nvme-Add-hardware-monitoring-support.patch
-  patch -Np1 -i ../0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch
+  # Cleanjaro Patches
+  patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
+  patch -Np1 -i '../0002-nvme-Add-hardware-monitoring-support.patch'
+  patch -Np1 -i '../0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
 
   # TODO: remove when AMD properly fixes it!
   # INFO: this is a hack and won't be upstreamed
@@ -87,8 +124,8 @@ prepare() {
   # ... or manually edit .config
 
   # rewrite configuration
-#  yes "" | make config >/dev/null
-  yes "" | make config >/tmp/new-config
+  yes "" | make config >/dev/null
+  #yes "" | make config >/tmp/new-config
 }
 
 build() {

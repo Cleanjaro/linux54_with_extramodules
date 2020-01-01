@@ -78,6 +78,3 @@ package_linux54-virtualbox-guest-modules(){
   echo "vboxsf" >> "$pkgdir/etc/modules-load.d/$_linuxprefix-virtualbox-guest-modules.conf"
 }
 
-
-
-
