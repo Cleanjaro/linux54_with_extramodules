@@ -1,4 +1,4 @@
-# Maintainer: Lukas Fleischer <archlinux at cryptocrack dot de>
+# Contributor: Lukas Fleischer <archlinux at cryptocrack dot de>
 # Contributor: xduugu
 # Contributor: nh2
 # Contributor: Steven Davidovitz <steviedizzle ð gmail đ com>
@@ -7,6 +7,8 @@
 # Contributor: Stefan Rupp <archlinux ð stefanrupp đ de>
 # Contributor: Ignas Anikevicius <anikevicius ð gmail đ com>
 
+# Maintainer: David Spink <yorper_protonmail.com>
+
 _linuxprefix=linux54
 _extraver=extramodules-5.4-CLEANJARO
 _pkgname=tp_smapi
@@ -14,7 +16,7 @@ _kernver="$(cat /usr/lib/modules/${_extraver}/version)"
 _extramodules=$(readlink -f "/usr/lib/modules/${_kernver}/extramodules")
 pkgname=$_linuxprefix-tp_smapi
 pkgver=0.43
-pkgrel=8
+pkgrel=9
 pkgdesc="Modules for ThinkPad's SMAPI functionality"
 arch=(x86_64)
 url='https://github.com/evgeni/tp_smapi'
