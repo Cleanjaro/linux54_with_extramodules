@@ -1,3 +1,5 @@
+https://gitlab.com/snippets/1929174
+
 diff --git a/kernel/conftest.sh b/kernel/conftest.sh
 index c9c2db3..6b677dd 100755
 --- a/kernel/conftest.sh
