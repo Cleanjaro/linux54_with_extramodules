@@ -21,9 +21,10 @@ license=('custom')
 install=nvidia.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
-source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run" "kernel-5.4.patch")
+source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run" "kernel-5.4.patch" "prime.patch")
 sha256sums=('caee54f0ee5f6171a61b25670d309d1abe16d59fc7bec0577794b1a52c09244a'
-            'e825dfe84509f899776530b8e42dc98bfadda5503cefe72671f1cb4c50572318')
+            'e825dfe84509f899776530b8e42dc98bfadda5503cefe72671f1cb4c50572318'
+            'a353f5f79029f35ab4994f91e64337a96f4721555f128102b478b543bb08634f')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
@@ -32,7 +33,8 @@ prepare() {
     cd "${_pkg}"
     # patches here
     # Fix compile problem with 5.4
-    (patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.4.patch)
+    patch -p1 --no-backup-if-mismatch -i "$srcdir"/kernel-5.4.patch
+    patch -p1 -i '../prime.patch'
 }
 
 build() {
