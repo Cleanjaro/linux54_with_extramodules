@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=12
+_sub=13
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -23,21 +23,21 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         '0001-ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
         '0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
         '0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
-        '0004-PCI-pciehp-dont-disable-interrupt-twice-on-suspend.patch'
-        '0005-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
-        '0006-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
-        '0007-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
-        '0008-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
-        '0009-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
-        '0010-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
-        '0011-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-        '0012-pinctrl-sunrisepoint-Provide-interrupt-status-register-offset.patch'
-        '0013-Revert-iwlwifi-mvm-fix-scan-config-command-size.patch'
-        '0014-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
+        '0004-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
+        '0005-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
+        '0006-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+        '0007-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+        '0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+        '0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+        '0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
+        '0011-pinctrl-sunrisepoint-Provide-interrupt-status-register-offset.patch'
+        '0012-Revert-iwlwifi-mvm-fix-scan-config-command-size.patch'
+        '0013-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
+        '0014-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+        '0015-PTP-free-ptp-device-pin-descriptors-properly.patch'
         # Cleanjaro Patches
         '0001-futex-wait-multiple-5.3.patch'
         '0002-nvme-Add-hardware-monitoring-support.patch'
-        '0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
         # AMD navi 10 reset quirk
         '0001-nonupstream-navi10-vfio-reset.patch'
         )
@@ -48,12 +48,11 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            'dff283ff67e7e21bedc49290de630dba6e1e7ca64b16ada306f1298a1b7f53ac'
-            'e0cbad19cd1b126a3f4b376b4e54b0fb8612d613895e4ec778f90a3e40298470'
+            '40f429d1a47db11033179f4ac3306d72c72556a6727ead7a29dc0f4412a697d1'
+            'e581fd98dd6bd5cc40a31797fb1ca7110fa9bb6c350b4d67dd5fe51f05b6b1c8'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '7baea65989ef0d29ab4eb8296759193b8f93c31248d08e944e1bdf0059ccdfdd'
             'abcf6043c594d5514118124a8f2cf8787557a95338fa0ff7f28a142567bafed0'
-            '3e8ed640a8853a038e89b4cd9b17e6a9c3f8bfb19c5efa3ca65224c6aabb8e83'
             '2431629465ca508a203df31ee14f614c061f6efc128ec858cecb4a3a2ee5f1d0'
             '25d72c2c88088d78afa1658fc16c8d4ad98f4140ec69fa0ade49abfe27e8f722'
             'e2084feabc3abeed37579ff515c367014356a652b85794b1612fea4daabe85d3'
@@ -64,9 +63,10 @@ sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             '33ec2170ace6b4f7dbc1cc751110d325d8619202d0f312587adbc4bef7a045ce'
             'b399265f4ae1ce18a791b04285110e1e392f8535e8df9d3d533ce3e552788322'
             '3b27435363489a55c4a4db3077356050bc000cf9c9091e97fbdf0a21fbd0defb'
+            '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
+            'e782d056897efb98e8f040a62bdc1ccf28377e2856542847f7397a34f47579ae'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '597fae308df67ddf5a57d630f1950c6634a46d0506f5e9cd5d203ed9cce71184'
-            '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
             '7a2758f86dd1339f0f1801de2dbea059b55bf3648e240878b11e6d6890d3089c')
 prepare() {
   cd "${srcdir}/linux-${_basekernel}"
@@ -80,22 +80,22 @@ prepare() {
   # More Arch Patches
   patch -Np1 -i '../0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
   patch -Np1 -i '../0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
-  patch -Np1 -i '../0004-PCI-pciehp-dont-disable-interrupt-twice-on-suspend.patch'
-  patch -Np1 -i '../0005-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
-  patch -Np1 -i '../0006-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
-  patch -Np1 -i '../0007-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
-  patch -Np1 -i '../0008-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
-  patch -Np1 -i '../0009-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
-  patch -Np1 -i '../0010-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
-  patch -Np1 -i '../0011-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-  patch -Np1 -i '../0012-pinctrl-sunrisepoint-Provide-interrupt-status-register-offset.patch'
-  patch -Np1 -i '../0013-Revert-iwlwifi-mvm-fix-scan-config-command-size.patch'
-  patch -Np1 -i '../0014-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
+  patch -Np1 -i '../0004-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
+  patch -Np1 -i '../0005-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
+  patch -Np1 -i '../0006-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+  patch -Np1 -i '../0007-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+  patch -Np1 -i '../0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+  patch -Np1 -i '../0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+  patch -Np1 -i '../0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
+  patch -Np1 -i '../0011-pinctrl-sunrisepoint-Provide-interrupt-status-register-offset.patch'
+  patch -Np1 -i '../0012-Revert-iwlwifi-mvm-fix-scan-config-command-size.patch'
+  patch -Np1 -i '../0013-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
+  patch -Np1 -i '../0014-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+  patch -Np1 -i '../0015-PTP-free-ptp-device-pin-descriptors-properly.patch'
 
   # Cleanjaro Patches
   patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
   patch -Np1 -i '../0002-nvme-Add-hardware-monitoring-support.patch'
-  patch -Np1 -i '../0003-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
 
   # TODO: remove when AMD properly fixes it!
   # INFO: this is a hack and won't be upstreamed
