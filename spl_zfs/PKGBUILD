@@ -7,8 +7,8 @@ _linuxprefix=linux54
 _extramodules=extramodules-5.4-CLEANJARO
 pkgbase=$_linuxprefix-spl_zfs
 pkgname=("$_linuxprefix-zfs")
-pkgver=0.8.2
-pkgrel=13
+pkgver=0.8.3
+pkgrel=1
 url="http://zfsonlinux.org/"
 arch=('x86_64')
 license=('CDDL' 'GPLv2')
@@ -16,17 +16,12 @@ depends=("$_linuxprefix" "kmod")
 makedepends=("$_linuxprefix-headers")
 groups=("$_linuxprefix-extramodules")
 install=install
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/zfs-${pkgver}.tar.gz"
-        https://github.com/zfsonlinux/zfs/commit/e5db31349484e5e859c7a942eb15b98d68ce5b4d.patch)
-sha256sums=('47608e257c8ecebb918014ef1da6172c3a45d990885891af18e80f5cc28beab8'
-            '486b9b04795037ff9d38533a7e51f412ac6372ba3da8fccebb96af4ecc812eaf')
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/zfs-${pkgver}.tar.gz")
+sha256sums=('545a4897ce30c2d2dd9010a0fdb600a0d3d45805e2387093c473efc03aa9d7fd')
 
 prepare() {
   cd "${srcdir}/zfs-${pkgver}"
   # patches here
-
-  # Linux 5.0 compat: SIMD compatibility
-  patch -Np1 -i ../e5db31349484e5e859c7a942eb15b98d68ce5b4d.patch
 }
 
 build() {
