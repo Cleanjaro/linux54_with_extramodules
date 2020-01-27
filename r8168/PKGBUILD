@@ -19,16 +19,14 @@ depends=('glibc' "$_linuxprefix")
 makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
-source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$_pkgname-$pkgver.tar.gz"
-         kernel-5.4.patch)
-sha256sums=('0aacba20d985ba5e67e21bdad89a099e102f7bef3027adb647ffbb80b01ac8d0'
-            'be79c151c6323bb4d340e31e44fae25a36a93d317812fe5d75c54649ed2508b0')
+source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$_pkgname-$pkgver.tar.gz")
+sha256sums=('0aacba20d985ba5e67e21bdad89a099e102f7bef3027adb647ffbb80b01ac8d0')
 
 install=$_pkgname.install
 
 prepare() {
     cd "$_pkgname-$pkgver"
-    patch -Np1 -i ../kernel-5.4.patch
+    #patches here
 }
 
 build() {
