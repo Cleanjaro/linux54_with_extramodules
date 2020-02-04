@@ -7,8 +7,8 @@ _linuxprefix=linux54
 _extramodules=extramodules-5.4-CLEANJARO
 pkgname=$_linuxprefix-nvidia-440xx
 _pkgname=nvidia
-pkgver=440.44
-pkgrel=16
+pkgver=440.59
+pkgrel=1
 pkgdesc="NVIDIA drivers for linux (Long lived)."
 arch=('x86_64')
 url="http://www.nvidia.com/"
@@ -21,9 +21,8 @@ license=('custom')
 install=nvidia.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
-source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run" "prime.patch")
-sha256sums=('794fdfc8e65c203ae482f59df7e55050ddcf0a11af2a95eaa1a10c7d48ec7e0f'
-            'a353f5f79029f35ab4994f91e64337a96f4721555f128102b478b543bb08634f')
+source=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
+sha256sums=('87c05aeadd260034b4d429de5be8032ead2103adee7aedc1adbb15c0ce3c6f28')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
@@ -31,7 +30,6 @@ prepare() {
     sh "${_pkg}.run" --extract-only
     cd "${_pkg}"
     # patches here
-    patch -p1 -i '../prime.patch'
 }
 
 build() {
