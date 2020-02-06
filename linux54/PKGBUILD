@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=17
+_sub=18
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -30,8 +30,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         '0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
         '0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
         '0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-        '0011-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
-        '0012-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+        '0011-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
         # Cleanjaro Patches
         '0001-futex-wait-multiple-5.3.patch'
         '0002-nvme-Add-hardware-monitoring-support.patch'
@@ -45,8 +44,8 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            '8f7c4628793d6ff225fc5b7d622b8a2ee90ccbaea8eb0dd917821be460a053fe'
-            '20c95b33c40dcca03d52d47b20828ad722ed2c096d04d2f881adf6f0101f5417'
+            '88a35b9b03bf4ffe5b043baccc9655a80c24e67a64f2dcd7f9bb29c8faa37f3f'
+            '2df338617f281c0ef101305b020ba951413a3c7c72e3d8c98c2f17fce0f90f6d'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '7baea65989ef0d29ab4eb8296759193b8f93c31248d08e944e1bdf0059ccdfdd'
             'abcf6043c594d5514118124a8f2cf8787557a95338fa0ff7f28a142567bafed0'
@@ -57,7 +56,6 @@ sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             '5257159e20a5fcb102a3b3ee6de33882a9e132e7f1d4345b8730effdd0240bb6'
             '2516be40fe063f7a448c69f170d628dbf549c3e084c2c7eb6910fd4782a6e73f'
             '57c7eb7849f99f2067587b5826b6d6abfb1675238d104b2378f4db59639a9cf4'
-            '3b27435363489a55c4a4db3077356050bc000cf9c9091e97fbdf0a21fbd0defb'
             '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '597fae308df67ddf5a57d630f1950c6634a46d0506f5e9cd5d203ed9cce71184'
@@ -81,8 +79,7 @@ prepare() {
   patch -Np1 -i '../0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
   patch -Np1 -i '../0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
   patch -Np1 -i '../0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-  patch -Np1 -i '../0011-Revert-e1000e-Make-watchdog-use-delayed-work.patch'
-  patch -Np1 -i '../0012-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+  patch -Np1 -i '../0011-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
 
   # Cleanjaro Patches
   patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
