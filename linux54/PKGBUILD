@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=20
+_sub=21
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -24,13 +24,12 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         '0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
         '0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
         '0004-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
-        '0005-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
-        '0006-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
-        '0007-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
-        '0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
-        '0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
-        '0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-        '0011-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+        '0005-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+        '0006-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+        '0007-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+        '0008-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+        '0009-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
+        '0010-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
         # Cleanjaro Patches
         '0001-futex-wait-multiple-5.3.patch'
         '0002-nvme-Add-hardware-monitoring-support.patch'
@@ -44,13 +43,12 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            'a3fa58e27a36b8e363f95207206cf8cb162ec348cf8ccb8c6c4f9c478f2ca1b6'
+            'a8a136ffa760eb998b2916fee5b8935c5f70c7233b57f8a8dde8f61dd48fc908'
             '4f8612fd2e766d1d10f2f595662c0090a5e0a88f0bf8fa016099d95295d00d2a'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '7baea65989ef0d29ab4eb8296759193b8f93c31248d08e944e1bdf0059ccdfdd'
             'abcf6043c594d5514118124a8f2cf8787557a95338fa0ff7f28a142567bafed0'
             '2431629465ca508a203df31ee14f614c061f6efc128ec858cecb4a3a2ee5f1d0'
-            '25d72c2c88088d78afa1658fc16c8d4ad98f4140ec69fa0ade49abfe27e8f722'
             'e2084feabc3abeed37579ff515c367014356a652b85794b1612fea4daabe85d3'
             '988ffbb96d85564a9d96145e5973339a8f78ae95d919efb2ee7bb50f7a8e8fc9'
             '5257159e20a5fcb102a3b3ee6de33882a9e132e7f1d4345b8730effdd0240bb6'
@@ -73,13 +71,12 @@ prepare() {
   patch -Np1 -i '../0002-lib-devres-add-a-helper-function-for-ioremap_uc.patch'
   patch -Np1 -i '../0003-mfd-intel-lpss-use-devm_ioremap_uc-for-MMIO.patch'
   patch -Np1 -i '../0004-PCI-pciehp-prevent-deadlock-on-disconnect.patch'
-  patch -Np1 -i '../0005-ACPI-PM-s2idle-rework-ACPI-events-sync.patch'
-  patch -Np1 -i '../0006-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
-  patch -Np1 -i '../0007-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
-  patch -Np1 -i '../0008-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
-  patch -Np1 -i '../0009-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
-  patch -Np1 -i '../0010-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
-  patch -Np1 -i '../0011-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
+  patch -Np1 -i '../0005-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-suspend.patch'
+  patch -Np1 -i '../0006-drm-i915-Fix-audio-power-up-sequence-for-gen10-display.patch'
+  patch -Np1 -i '../0007-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-more-platforms.patch'
+  patch -Np1 -i '../0008-iwlwifi-pcie-restore-support-for-Killer-Qu-C0-NICs.patch'
+  patch -Np1 -i '../0009-drm-i915-gt-Detect-if-we-miss-WaIdleLiteRestore.patch'
+  patch -Np1 -i '../0010-drm-amdgpu-Add-DC-feature-mask-to-disable-fractional-pwm.patch'
 
   # Cleanjaro Patches
   patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
