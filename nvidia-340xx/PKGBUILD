@@ -9,7 +9,7 @@ pkgname=$_linuxprefix-nvidia-340xx
 _pkgname=nvidia
 pkgver=340.108
 _pkg=NVIDIA-Linux-x86_64-${pkgver}-no-compat32
-pkgrel=23
+pkgrel=24
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
 pkgdesc="NVIDIA drivers for linux (Legacy)."
