@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=26
+_sub=27
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -34,7 +34,7 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            'a446bb14b477486f99d4098f59ae8512fe15da18f2f44ad562ae702a6116176d'
+            'de58b00ad15ed4f58948e4a583d52829cd34a30cff06cdbbaea5cfc5a69e6030'
             'a1e3b750d31769b27b9ca2a41845d361180e2da20956fc6169896d45f5c92bfa'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
