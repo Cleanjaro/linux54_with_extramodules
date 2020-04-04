@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=29
+_sub=30
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -21,7 +21,6 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         'config.x86_64'
         # ARCH Patches
         '0001-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
-        '0001-CVE-2020-8835-Revert-bpf-Provide-better-register-bou.patch'
         # Cleanjaro Patches
         '0001-futex-wait-multiple-5.3.patch'
         '0002-nvme-Add-hardware-monitoring-support.patch'
@@ -35,10 +34,9 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            'bfcebb90e01efab7e0927656f53584c82185c424a527720a663700fe181f10ed'
-            'a1e3b750d31769b27b9ca2a41845d361180e2da20956fc6169896d45f5c92bfa'
+            '89dfaaba8052f609c02e04dfdf1362c6d916fb8a1057f9127f45be34af3d1241'
+            'a602cd3fe901fd5b7b11b9889532303c4c639db383ce96af27d388647d44860c'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
-            'b8947e51f441299768e4a3375792c4e713b5adf45073a798fc38e0b27ad59246'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '597fae308df67ddf5a57d630f1950c6634a46d0506f5e9cd5d203ed9cce71184'
             '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
@@ -52,7 +50,6 @@ prepare() {
   # Arch Patches
   # disable USER_NS for non-root users by default
   patch -Np1 -i '../0001-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
-  patch -Np1 -i '../0001-CVE-2020-8835-Revert-bpf-Provide-better-register-bou.patch'
 
   # Cleanjaro Patches
   patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
