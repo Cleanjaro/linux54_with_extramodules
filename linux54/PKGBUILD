@@ -21,6 +21,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."
         'config.x86_64'
         # ARCH Patches
         '0001-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
+        '0002-sphinx-workaround.patch'
         # Cleanjaro Patches
         '0001-futex-wait-multiple-5.3.patch'
         '0002-nvme-Add-hardware-monitoring-support.patch'
@@ -50,6 +51,7 @@ prepare() {
   # Arch Patches
   # disable USER_NS for non-root users by default
   patch -Np1 -i '../0001-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
+  patch -Np1 -i '../0002-sphinx-workaround.patch'
 
   # Cleanjaro Patches
   patch -Np1 -i '../0001-futex-wait-multiple-5.3.patch'
