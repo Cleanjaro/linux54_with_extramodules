@@ -21,7 +21,7 @@ makedepends=("$_linuxprefix-headers")
 builddepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
-source=("${_pkgname}-${pkgver}::https://github.com/lwfinger/rtl8723bu/archive/master.zip"
+source=("${_pkgname}-${pkgver}.zip::https://github.com/lwfinger/rtl8723bu/archive/master.zip"
        	'blacklist-rtl8xxxu.conf')
 sha256sums=('c1db678a706c09d1b0bce6e48d542ba6b9f81a82f08d0398195552cdb679deb7'
             '7c726ad04083c8e620bc11c837e5f51d3e9e2a5c3e19c333b2968eb39f1ef07e')
