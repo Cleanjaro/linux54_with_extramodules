@@ -8,7 +8,7 @@ pkgbase=linux54
 pkgname=('linux54' 'linux54-headers')
 _kernelname=-CLEANJARO
 _basekernel=5.4
-_sub=30
+_sub=31
 pkgver=${_basekernel}.${_sub}
 pkgrel=1
 arch=('x86_64')
@@ -18,7 +18,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'elfutils' 'git')
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${_basekernel}.tar."{xz,sign}
         "http://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
-        'config.x86_64'
+        'config' # the main kernel config file
         # ARCH Patches
         '0001-Add-sysctl-and-CONFIG-to-disallow-unprivileged-CLONE_NEWUSER.patch'
         '0002-sphinx-workaround.patch'
@@ -35,9 +35,10 @@ validpgpkeys=(
 )
 sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
             'SKIP'
-            '89dfaaba8052f609c02e04dfdf1362c6d916fb8a1057f9127f45be34af3d1241'
-            'a602cd3fe901fd5b7b11b9889532303c4c639db383ce96af27d388647d44860c'
+            'b8802f76e9af83cc3ce9174b8f7fa03b0f7f35e8d112ae15ed3a54f579e294f1'
+            'ff8641dbd8e37b4e03d6e54e9ce2102792294d10517927caae3f0acd5fafdbfe'
             '7685d526bbdbfa795986591a70071c960ff572f56d3501774861728a9df8664c'
+            'b7c814c8183e4645947a6dcc3cbf80431de8a8fd4e895b780f9a5fd92f82cb8e'
             '4524a38401f997dbde577e76f2ec2ea77957a74edf3a6939013c8178cd65e476'
             '597fae308df67ddf5a57d630f1950c6634a46d0506f5e9cd5d203ed9cce71184'
             '1fd4518cb0518d68f8db879f16ce16455fdc2200ed232f9e27fb5f1f3b5e4906'
@@ -63,7 +64,7 @@ prepare() {
   # https://forum.level1techs.com/t/145666/86
   patch -Np1 -i '../0001-nonupstream-navi10-vfio-reset.patch'
 
-   cat "${srcdir}/config.x86_64" > ./.config
+   cat "${srcdir}/config" > ./.config
 
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
